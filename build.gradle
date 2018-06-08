@@ -1,0 +1,35 @@
+apply plugin: "groovy"
+apply plugin: "application"
+
+repositories {
+  jcenter()
+  mavenCentral()
+}
+
+dependencies {
+  implementation(
+    "org.codehaus.groovy:groovy-all:$groovy_all",
+    "com.google.inject:guice:$guice",
+    "com.rabbitmq:amqp-client:$rabbitmq",
+    "org.yaml:snakeyaml:$snake_yaml",
+    "io.projectreactor:reactor-core:$reactor_core",
+    "org.slf4j:slf4j-api:$slf4f"
+  )
+
+  testImplementation(
+    "org.spockframework:spock-core:$spock_core",
+    "org.spockframework:spock-guice:$spock_core"
+  )
+
+  testImplementation ("org.apache.qpid:qpid-broker:$qpid") {
+    exclude group: "ch.qos.logback", module: "logback-classic"
+  }
+
+  runtimeOnly(
+    "ch.qos.logback:logback-classic:$logback",
+    "ch.qos.logback:logback-access:$logback",
+    "org.slf4j:log4j-over-slf4j:$slf4f",
+    "org.slf4j:jcl-over-slf4j:$slf4f",
+    "org.slf4j:jul-to-slf4j:$slf4f"
+  )
+}

@@ -1,0 +1,10 @@
+events:
+  broker:
+    port: 5672
+    username: guest
+    password: guest
+    host: localhost
+  publish:
+    exchange: rabbit
+  consume:
+    queue: events
