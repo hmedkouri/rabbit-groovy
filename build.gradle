@@ -23,6 +23,7 @@ dependencies {
 
   testImplementation ("org.apache.qpid:qpid-broker:$qpid") {
     exclude group: "ch.qos.logback", module: "logback-classic"
+    exclude group: "com.sleepycat", module:"je"
   }
 
   runtimeOnly(
