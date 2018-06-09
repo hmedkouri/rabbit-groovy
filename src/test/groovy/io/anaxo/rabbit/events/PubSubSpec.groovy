@@ -1,25 +1,17 @@
 package io.anaxo.rabbit.events
 
-import io.anaxo.rabbit.Config
 import io.anaxo.rabbit.broker.BaseSpec
-import spock.guice.UseModules
 import spock.util.concurrent.AsyncConditions
 
-import javax.inject.Inject
-
-@UseModules([
-  io.anaxo.rabbit.events.Module
-])
 class PubSubSpec extends BaseSpec {
 
-  @Inject
   Publisher publisher
-
-  @Inject
   Consumer consumer
 
-  @Inject
-  Config config
+  void setup() {
+    publisher = context.getBean(Publisher)
+    consumer = context.getBean(Consumer)
+  }
 
   void "publish 3 messages and consume them"() {
     given:
@@ -39,7 +31,10 @@ class PubSubSpec extends BaseSpec {
 
     then:
     async.await(1)
+  }
 
+  void cleanup(){
+    consumer.destroy()
   }
 
 }

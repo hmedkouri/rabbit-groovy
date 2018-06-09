@@ -1,4 +1,4 @@
-package io.anaxo.rabbit
+package io.anaxo.rabbit.config
 
 class Config {
 

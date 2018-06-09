@@ -1,19 +1,16 @@
 package io.anaxo.rabbit.events
 
 import io.anaxo.rabbit.broker.BaseSpec
-import spock.guice.UseModules
 import spock.lang.Subject
 
-import javax.inject.Inject
-
-@UseModules([
-        io.anaxo.rabbit.events.Module
-])
 class PublisherSpec extends BaseSpec {
 
   @Subject
-  @Inject
   Publisher subject
+
+  void setup() {
+    subject = context.getBean(Publisher)
+  }
 
   void "produce 3 messages"() {
     expect:
@@ -21,5 +18,4 @@ class PublisherSpec extends BaseSpec {
       subject.publish "","Hello World!"
     }
   }
-
 }

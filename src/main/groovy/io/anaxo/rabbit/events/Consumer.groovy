@@ -2,7 +2,7 @@ package io.anaxo.rabbit.events
 
 import com.rabbitmq.client.*
 import groovy.util.logging.Slf4j
-import io.anaxo.rabbit.Config
+import io.anaxo.rabbit.config.Config
 
 import javax.inject.Inject
 

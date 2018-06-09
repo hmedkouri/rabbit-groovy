@@ -5,9 +5,9 @@ services:
       ports:
         - "5672:5672"
         - "15672:15672"
-    app:
-      build: ./docker
-      links:
-        - rabbit:rabbit
-      entrypoint:
-        - /home/user/dev-entrypoint.sh
+    #app:
+    #  build: ./docker
+    #  links:
+    #    - rabbit:rabbit
+    #  entrypoint:
+    #    - /home/user/dev-entrypoint.sh

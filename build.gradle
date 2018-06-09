@@ -1,15 +1,48 @@
+buildscript {
+  repositories {
+    mavenCentral()
+    maven { url "https://plugins.gradle.org/m2/" }
+  }
+  dependencies {
+    classpath "com.github.jengelman.gradle.plugins:shadow:2.0.4"
+    classpath "io.spring.gradle:dependency-management-plugin:1.0.5.RELEASE"
+    classpath "net.ltgt.gradle:gradle-apt-plugin:0.15"
+  }
+}
+
+apply plugin:"io.spring.dependency-management"
 apply plugin: "groovy"
 apply plugin: "application"
+apply plugin:"net.ltgt.apt-eclipse"
+apply plugin:"net.ltgt.apt-idea"
 
 repositories {
-  jcenter()
+  mavenLocal()
   mavenCentral()
+  jcenter()
+}
+
+dependencyManagement {
+  imports {
+    mavenBom "io.micronaut:bom:$micronaut"
+  }
 }
 
 dependencies {
+  annotationProcessor "io.micronaut:inject-java"
+
+  implementation(
+    "io.micronaut:http-client",
+    "io.micronaut:http-server-netty",
+    "io.micronaut:runtime-groovy",
+    "io.micronaut:inject",
+    "io.micronaut:runtime",
+    "io.micronaut:inject-groovy",
+    "io.micronaut:inject-java"
+  )
+
   implementation(
     "org.codehaus.groovy:groovy-all:$groovy_all",
-    "com.google.inject:guice:$guice",
     "com.rabbitmq:amqp-client:$rabbitmq",
     "org.yaml:snakeyaml:$snake_yaml",
     "io.projectreactor:reactor-core:$reactor_core",
@@ -34,3 +67,7 @@ dependencies {
     "org.slf4j:jul-to-slf4j:$slf4f"
   )
 }
+
+mainClassName = "io.anaxo.rabbit.Application"
+compileJava.options.compilerArgs += '-parameters'
+compileTestJava.options.compilerArgs += '-parameters'

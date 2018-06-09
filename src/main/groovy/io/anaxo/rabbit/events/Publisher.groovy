@@ -5,7 +5,7 @@ import com.rabbitmq.client.Connection
 import com.rabbitmq.client.ConnectionFactory
 import groovy.json.JsonOutput
 import groovy.util.logging.Slf4j
-import io.anaxo.rabbit.Config
+import io.anaxo.rabbit.config.Config
 
 import javax.inject.Inject
 

@@ -1,3 +1,3 @@
-Experimental RabbitMQ project
------------------------------
+Experimental Microservice using Micronaut and RabbitMQ
+------------------------------------------------------
 
