@@ -46,7 +46,7 @@ dependencies {
     "com.rabbitmq:amqp-client:$rabbitmq",
     "org.yaml:snakeyaml:$snake_yaml",
     "io.projectreactor:reactor-core:$reactor_core",
-    "com.google.guava:guava:22.0",
+    "com.google.guava:guava:25.1-jre",
     "org.slf4j:slf4j-api:$slf4f"
   )
 

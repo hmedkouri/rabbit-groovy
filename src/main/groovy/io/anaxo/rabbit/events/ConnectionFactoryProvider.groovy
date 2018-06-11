@@ -5,15 +5,18 @@ import com.rabbitmq.client.*
 import com.rabbitmq.client.impl.DefaultExceptionHandler
 import groovy.util.logging.Slf4j
 import io.anaxo.rabbit.config.Config
+import io.micronaut.context.annotation.Bean
+import io.micronaut.context.annotation.Factory
 
 import javax.inject.Inject
-import javax.inject.Provider
+import javax.inject.Singleton
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.ThreadFactory
 
 @Slf4j
-class ConnectionFactoryProvider implements Provider<ConnectionFactory> {
+@Factory
+class ConnectionFactoryProvider {
 
   @Inject
   Config config
@@ -21,7 +24,8 @@ class ConnectionFactoryProvider implements Provider<ConnectionFactory> {
   ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("rabbitmq-pool-%d").build()
   ExecutorService executor = Executors.newFixedThreadPool(3, threadFactory)
 
-  @Override
+  @Bean
+  @Singleton
   ConnectionFactory get() {
     def broker = config.events.broker
 

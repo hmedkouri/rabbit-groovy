@@ -1,5 +1,7 @@
 package io.anaxo.rabbit
 
+import com.google.common.eventbus.EventBus
+import io.anaxo.rabbit.events.ReconcileEvent
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Body
@@ -17,7 +19,7 @@ import java.util.concurrent.TimeUnit
 class HelloController {
 
   @Inject
-  io.anaxo.rabbit.events.Publisher publisher
+  EventBus eventBus
 
   @Get("/hello/{name}")
   String hello(String name) {
@@ -33,7 +35,7 @@ class HelloController {
 
   @Post(uri = "/publish", consumes = [MediaType.TEXT_PLAIN])
   HttpResponse publish(@Body String event) {
-    publisher.publish("event.created", event)
+    eventBus.post(new ReconcileEvent(id: event))
     HttpResponse.ok()
   }
 
