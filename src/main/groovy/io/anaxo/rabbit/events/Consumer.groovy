@@ -3,6 +3,7 @@ package io.anaxo.rabbit.events
 import com.rabbitmq.client.*
 import groovy.util.logging.Slf4j
 import io.anaxo.rabbit.config.Config
+import io.micronaut.context.ApplicationContext
 
 import javax.inject.Inject
 
@@ -56,5 +57,11 @@ class Consumer {
   void destroy(){
     channel.close()
     connection.close()
+  }
+
+  static void main(String[] args) {
+    ApplicationContext context = ApplicationContext.run()
+    Consumer consumer = context.getBean(Consumer)
+    consumer.consume {println it}
   }
 }

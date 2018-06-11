@@ -2,7 +2,7 @@ micronaut {
   executors {
     io {
       type = "fixed"
-      nThreads = 75
+      nThreads = 3
     }
   }
   server {

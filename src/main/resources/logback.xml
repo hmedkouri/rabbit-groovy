@@ -22,6 +22,8 @@
         <appender-ref ref="FILE" />
     </appender>
 
+    <logger name="io.anaxo.rabbit" level="info"/>
+
     <root level="error">
         <appender-ref ref="ASYNCSTDOUT" />
     </root>
