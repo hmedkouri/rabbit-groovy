@@ -7,11 +7,11 @@
         </encoder>
     </appender>
 
-    <logger name="io.anaxo.rabbit.events" level="error"/>
+    <logger name="io.anaxo.rabbit.events" level="info"/>
     <logger name="io.anaxo.rabbit.handlers" level="info"/>
     <logger name="reactor.core.publisher" level="info"/>
 
-    <root level="error">
+    <root level="info">
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>

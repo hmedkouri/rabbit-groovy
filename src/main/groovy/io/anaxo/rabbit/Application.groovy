@@ -20,7 +20,7 @@ class Application implements ApplicationEventListener<ServerStartupEvent> {
 
   @Override
   void onApplicationEvent(ServerStartupEvent event) {
-    consumer.consume{log.info it}
+    //consumer.consume{log.info it}
     log.info("Application has started")
   }
 

@@ -17,11 +17,11 @@ abstract class BaseSpec extends Specification {
 
   @Shared
   @AutoCleanup
-  ApplicationContext context = ApplicationContext.run()
+  ApplicationContext context
 
   @Shared
   @AutoCleanup
-  EmbeddedServer server = context.getBean(EmbeddedServer).start()
+  EmbeddedServer server
 
   @Shared
   static final String INITIAL_CONFIGURATION = "qpid-embedded-initial.json"
@@ -45,6 +45,9 @@ abstract class BaseSpec extends Specification {
   void setupSpec() {
     systemLauncher = new SystemLauncher()
     systemLauncher.startup(createSystemConfig())
+
+    context = ApplicationContext.run()
+    server = context.getBean(EmbeddedServer).start()
 
     log.info "broker started"
 
