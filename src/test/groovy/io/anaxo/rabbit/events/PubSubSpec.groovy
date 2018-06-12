@@ -25,7 +25,8 @@ class PubSubSpec extends BaseSpec {
     when:
     consumer.consume({ res ->
       async.evaluate {
-        res != null
+        assert res != null
+        assert res == "\"Hello World!\""
       }
     })
 

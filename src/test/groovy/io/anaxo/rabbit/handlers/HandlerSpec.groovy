@@ -30,7 +30,8 @@ class HandlerSpec extends BaseSpec {
     h.log("io.anaxo.rabbit.handlers").subscribe{
       res ->
       async.evaluate {
-        res != null
+        assert res != null
+        assert res == "\"Hello World!\""
       }
     }
 
